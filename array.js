@@ -1,5 +1,5 @@
-import memory from "./memory";
-
+const Memory = require("./memory");
+const memory = new Memory();
 class Array {
   constructor() {
     this.length = 0;
@@ -16,6 +16,15 @@ class Array {
     this.length++;
   }
 
+  pop() {
+    if (this.length === 0) {
+      throw new Error("Index error");
+    }
+    const value = memory.get(this.ptr + this.length - 1);
+    this.length--;
+    return value;
+  }
+
   _resize(size) {
     const oldPtr = this.ptr;
     this.ptr = memory.allocate(size);
@@ -25,6 +34,18 @@ class Array {
     memory.copy(this.ptr, oldPtr, this.length);
     memory.free(oldPtr);
     this._capacity = size;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error("Index error");
+    }
+    memory.copy(
+      this.ptr + index,
+      this.ptr + index + 1,
+      this.length - index - 1
+    );
+    this.length--;
   }
 }
 Array.SIZE_RATIO = 3;
@@ -36,9 +57,17 @@ function main() {
   let arr = new Array();
 
   // Add an item to the array
-  arr.push(3);
-
-  console.log(arr);
+  arr.push("tauhida");
+  // arr.push(5);
+  // arr.push(15);
+  // arr.push(19);
+  // arr.push(45);
+  // arr.push(10);
+  // arr.pop(); // we removed values from array and decreased length of array
+  // arr.pop();
+  // arr.pop();
+  // arr.remove();
+  console.log(memory.get(1));
 }
 
 main();
