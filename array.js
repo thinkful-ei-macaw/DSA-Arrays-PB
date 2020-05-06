@@ -43,16 +43,6 @@ class Array {
     memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
     this.length--;
   }
-
-  urlify(string) {
-    let newString = string.replace(' ', '%20');
-    // for (let i = 0; i < string.length; i++) {
-    //   if (string[i] === ' ') {
-
-    //   }
-    // }
-    return newString;
-  }
 }
 Array.SIZE_RATIO = 3;
 
@@ -63,7 +53,7 @@ function main() {
   let arr = new Array();
 
   // Add an item to the array
-  arr.urlify('tauhida parveen');
+
   // arr.push(5);
   // arr.push(15);
   // arr.push(19);
