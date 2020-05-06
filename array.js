@@ -1,4 +1,4 @@
-const Memory = require("./memory");
+const Memory = require('./memory');
 const memory = new Memory();
 class Array {
   constructor() {
@@ -18,7 +18,7 @@ class Array {
 
   pop() {
     if (this.length === 0) {
-      throw new Error("Index error");
+      throw new Error('Index error');
     }
     const value = memory.get(this.ptr + this.length - 1);
     this.length--;
@@ -29,7 +29,7 @@ class Array {
     const oldPtr = this.ptr;
     this.ptr = memory.allocate(size);
     if (this.ptr === null) {
-      throw new Error("Out of memory");
+      throw new Error('Out of memory');
     }
     memory.copy(this.ptr, oldPtr, this.length);
     memory.free(oldPtr);
@@ -38,14 +38,20 @@ class Array {
 
   remove(index) {
     if (index < 0 || index >= this.length) {
-      throw new Error("Index error");
+      throw new Error('Index error');
     }
-    memory.copy(
-      this.ptr + index,
-      this.ptr + index + 1,
-      this.length - index - 1
-    );
+    memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
     this.length--;
+  }
+
+  urlify(string) {
+    let newString = string.replace(' ', '%20');
+    // for (let i = 0; i < string.length; i++) {
+    //   if (string[i] === ' ') {
+
+    //   }
+    // }
+    return newString;
   }
 }
 Array.SIZE_RATIO = 3;
@@ -57,7 +63,7 @@ function main() {
   let arr = new Array();
 
   // Add an item to the array
-  arr.push(2);
+  arr.urlify('tauhida parveen');
   // arr.push(5);
   // arr.push(15);
   // arr.push(19);
@@ -67,7 +73,7 @@ function main() {
   // arr.pop();
   // arr.pop();
   // arr.remove();
-  console.log(memory.get(0));
+  console.log(arr.urlify('tauhida parveen'));
 }
 
 main();
