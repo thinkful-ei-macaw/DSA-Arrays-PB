@@ -57,7 +57,7 @@ function main() {
   let arr = new Array();
 
   // Add an item to the array
-  arr.push("tauhida");
+  arr.push(2);
   // arr.push(5);
   // arr.push(15);
   // arr.push(19);
@@ -67,7 +67,7 @@ function main() {
   // arr.pop();
   // arr.pop();
   // arr.remove();
-  console.log(memory.get(1));
+  console.log(memory.get(0));
 }
 
 main();
